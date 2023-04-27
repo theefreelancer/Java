@@ -1,0 +1,39 @@
+Annotations are forms of metadata that provide additional 
+information about classes, methods and fields.
+This additional information can be inform of instructions, recommendations, to the compiler and the runtime environment.
+
+The most commonly used annotations include @Deprecated, @Override, and SuppressWarnings.
+For @Deprecated, the compiler throws warning that a given codebase or block of code doesn't have to be compiled for its old or stale.
+@Override, the compiler checks if the parent method is overriden by the child component.
+@SuppressWarnings,
+Acts as the reverse of the @Deprecated.
+
+Custom annotations,
+@MyAnnotation("Ronald")
+class Outer{
+        //some code
+}
+class Main{
+        public static void main(String[] args){
+                MyAnnotation annotationInstance = Outer.class.getAnnotation(MyAnnotation.class);
+                System.out.println(annotationInstance.value());
+                //Output is Ronald.
+        }
+}
+We usually find annotations in spring framework and where lombok could be effectively utilised.
+
+Alternatively;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+
+@Retention(RetentionPolicy.RUNTIME);
+@Target(ElementType.METHOD, ElementType.FIELD);
+
+@Interface MyAnnotation{
+        String parameter1() default "parameter1";
+        String parameter2();
+}
+
+Thursday,27 April,2023. 
